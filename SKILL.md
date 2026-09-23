@@ -1,6 +1,7 @@
 ---
 name: vetting-product-name
 description: Use when choosing or vetting a product, app, or brand name before launch — e.g. picking between candidate names, checking if a name is free for App Store submission, or verifying domain/trademark availability. Triggers — KO 제품 이름, 앱 이름, 네이밍, 도메인 가용, 상표 검색, 앱스토어 중복. EN product name, app name, naming, domain availability, trademark search, App Store name collision.
+version: 1.0.0
 ---
 
 # Vetting a Product Name
@@ -27,7 +28,7 @@ Output per name: domain verdicts (✅ 가용 / ⛔ 등록됨 / ❓ 불명) + App
 ## The 4 checks
 
 ### 1. Domain — automated (`check-name.sh`)
-Checks `.com .io .net .ai .app` by default (add `.net`/`.io` are included; extend via `TLDS`).
+Checks `.com .io .net .ai .app` by default; override or extend the list via the `TLDS` env var (e.g. `TLDS="com io net ai app co"`).
 - `.com/.net/.ai/.app` → RDAP (fast, exact). `.io` → whois of the registry directly, because **RDAP returns a false 404 (looks available) for registered `.io` domains**.
 - `❓ 불명` usually means a whois rate-limit or network blip — just re-run that name. Don't report it as available.
 
